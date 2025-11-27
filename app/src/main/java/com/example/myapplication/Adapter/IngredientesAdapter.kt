@@ -11,11 +11,12 @@ import com.example.myapplication.Data.Ingrediente
 import com.example.myapplication.R
 
 class IngredientesAdapter(
-    private val ingredientes: List<Ingrediente>, private val onItemClick: (Ingrediente) -> Unit
+    private var ingredientes: List<Ingrediente>,
+    private val onItemClick: (Ingrediente) -> Unit
 ) : RecyclerView.Adapter<IngredientesAdapter.IngredienteViewHolder>() {
     class IngredienteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titulo: TextView = itemView.findViewById(R.id.title_ingrediente)
-        val descripcion: TextView = itemView.findViewById(R.id.description_ingrediente)
+        val tipo: TextView = itemView.findViewById(R.id.tipo_ingrediente)
         val imagen: ImageView = itemView.findViewById(R.id.image_ingrediente)
     }
 
@@ -28,11 +29,16 @@ class IngredientesAdapter(
     override fun onBindViewHolder(holder: IngredienteViewHolder, position: Int) {
         val ingrediente = ingredientes[position]
         holder.titulo.text = ingrediente.nombre
-        holder.descripcion.text = ingrediente.descripcion
+        holder.tipo.text = ingrediente.tipo
         holder.imagen.load(ingrediente.imagen)
         holder.itemView.setOnClickListener {
             onItemClick(ingrediente)
         }
+    }
+
+    fun updateData(newList: List<Ingrediente>) {
+        ingredientes = newList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
