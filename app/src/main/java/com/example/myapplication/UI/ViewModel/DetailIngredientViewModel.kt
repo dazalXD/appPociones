@@ -5,12 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.Data.Ingrediente
 
-class DetailViewModel : ViewModel() {
+class DetailIngredientViewModel : ViewModel() {
     private val _ingrediente = MutableLiveData<Ingrediente>()
     val ingrediente: LiveData<Ingrediente> get() = _ingrediente
 
     fun setIngrediente(item: Ingrediente) {
         _ingrediente.value = item
     }
-
 }

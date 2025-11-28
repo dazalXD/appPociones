@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".UI.Activity.DetailPotionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.Activity.PotionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.Activity.DetailActivity"
             android:exported="false" />
         <activity

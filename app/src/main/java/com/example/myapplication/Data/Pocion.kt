@@ -4,11 +4,9 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Ingrediente(
-    val id: Int,
+data class Pocion(
     val nombre: String,
-    val tipo: String,
     val descripcion: String,
-    val imagen: String,
-    val obtencion: Obtencion
+    val ingredientes: List<Ingrediente>,
+    val pasos: List<String>
 ) : Parcelable

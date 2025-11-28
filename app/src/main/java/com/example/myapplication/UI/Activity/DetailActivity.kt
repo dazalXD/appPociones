@@ -12,15 +12,14 @@ import androidx.core.view.WindowInsetsCompat
 import coil.load
 import com.example.myapplication.Data.Ingrediente
 import com.example.myapplication.R
-import com.example.myapplication.UI.ViewModel.DetailViewModel
-import com.google.android.material.appbar.MaterialToolbar
+import com.example.myapplication.UI.ViewModel.DetailIngredientViewModel
 
 class DetailActivity : AppCompatActivity() {
-    private val detailViewModel: DetailViewModel by viewModels()
+    private val detailIngredientViewModel: DetailIngredientViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_detail)
+        setContentView(R.layout.activity_detail_ingredient)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -33,22 +32,26 @@ class DetailActivity : AppCompatActivity() {
         val textTitle = findViewById<TextView>(R.id.text_title)
         val textDescription = findViewById<TextView>(R.id.text_description)
         val textTipo = findViewById<TextView>(R.id.text_tipo)
+        val textDimension = findViewById<TextView>(R.id.text_dimension)
+        val textUbicacion = findViewById<TextView>(R.id.text_ubicacion)
+        val textHerramienta = findViewById<TextView>(R.id.text_herramienta)
+        val textCrafteo = findViewById<TextView>(R.id.text_crafteo)
 
         val item = intent.getParcelableExtra<Ingrediente>("ingrediente") as Ingrediente
         if (item != null) {
-            detailViewModel.setIngrediente(item)
+            detailIngredientViewModel.setIngrediente(item)
         }
 
-        detailViewModel.ingrediente.observe(this) { ingrediente ->
+        detailIngredientViewModel.ingrediente.observe(this) { ingrediente ->
             Log.d("Detalle de ingrediente", "$ingrediente")
             imageItem.load("${ingrediente.imagen}")
             textTitle.text = "${ingrediente.nombre}"
             textTipo.text = "${ingrediente.tipo}"
             textDescription.text = "${ingrediente.descripcion}"
-
+            textDimension.text = "${ingrediente.obtencion.dimencion}"
+            textUbicacion.text = "${ingrediente.obtencion.ubicacion}"
+            textHerramienta.text = "${ingrediente.obtencion.Herramienta}"
+            textCrafteo.text = "${ingrediente.obtencion.crafteo}"
         }
-
-//        Log.d("Detalle de ingrediente", "$item¡")
-
     }
 }

@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.IngredientesAdapter
 import com.example.myapplication.UI.Activity.DetailActivity
+import com.example.myapplication.UI.Activity.PotionsActivity
 import com.example.myapplication.UI.ViewModel.MainViewModel
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
@@ -68,8 +70,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         recycler = findViewById(R.id.recyclerIngredientes)
         recycler.layoutManager = LinearLayoutManager(this)
 
-        // NOTA: Asumo que tu IngredientesAdapter tiene un método `updateData`.
-        // Si esto da error, es posible que el constructor del adapter sea diferente.
         adapter = IngredientesAdapter(emptyList()) { item ->
             Log.d("Ingrediente", "${item.nombre}")
             val intent = Intent(this@MainActivity, DetailActivity::class.java)
@@ -90,8 +90,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show()
-            R.id.nav_profile -> Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
-            R.id.nav_settings -> Toast.makeText(this, "Ajustes", Toast.LENGTH_SHORT).show()
+            R.id.nav_profile -> {
+                val intent = Intent(this, PotionsActivity::class.java)
+                startActivity(intent)
+            }
         }
         drawerLayout.closeDrawers()
         return true
@@ -106,6 +108,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // Al presionar "atrás", si el menú está abierto, lo cierra.
+    @SuppressLint("GestureBackNavigation")
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(navigationView)) {
             drawerLayout.closeDrawer(navigationView)

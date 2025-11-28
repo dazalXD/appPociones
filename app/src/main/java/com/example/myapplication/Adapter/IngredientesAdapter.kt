@@ -22,7 +22,7 @@ class IngredientesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredienteViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_card_ingrediente, parent, false)
+            .inflate(R.layout.item_card, parent, false)
         return IngredienteViewHolder(view)
     }
 
