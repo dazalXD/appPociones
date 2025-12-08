@@ -14,14 +14,16 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.IngredientesAdapter
 import com.example.myapplication.UI.Activity.DetailActivity
 import com.example.myapplication.UI.Activity.PotionsActivity
-import com.example.myapplication.UI.Fragment.NavigationBottomFragment
 import com.example.myapplication.UI.ViewModel.MainViewModel
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
 
@@ -46,6 +48,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView = findViewById(R.id.navigation_view)
         toolbar = findViewById(R.id.toolbar)
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.setupWithNavController(navController)
+
         setSupportActionBar(toolbar)
 
         toggle = ActionBarDrawerToggle(
@@ -66,39 +74,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // --- RecyclerView y Adapter ---
-        recycler = findViewById(R.id.recyclerIngredientes)
-        recycler.layoutManager = LinearLayoutManager(this)
-
-        adapter = IngredientesAdapter(emptyList()) { item ->
-            Log.d("Ingrediente", "${item.nombre}")
-            val intent = Intent(this@MainActivity, DetailActivity::class.java)
-            intent.putExtra("ingrediente", item)
-            startActivity(intent)
-        }
-        recycler.adapter = adapter
-
-        // --- ViewModel ---
-        lifecycleScope.launch {
-            viewModel.ingredients.collect { lista ->
-                adapter.updateData(lista)
-            }
-        }
-
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.contenedor, NavigationBottomFragment())
-//            .commit()
     }
 
     // Función para manejar los clicks en los items del menú
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_home -> Toast.makeText(this, "Inicio", Toast.LENGTH_SHORT).show()
-            R.id.nav_profile -> {
-                val intent = Intent(this, PotionsActivity::class.java)
-                startActivity(intent)
-            }
+
         }
         drawerLayout.closeDrawers()
         return true

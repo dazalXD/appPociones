@@ -33,39 +33,26 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
-            android:id="@+id/boxMesa"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBar"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="16dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/mesa_alquimia" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerIngredientes"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/boxMesa"
-            app:layout_constraintBottom_toTopOf="@+id/contenedor"
-            tools:layout="@layout/item_card"/>
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+            app:layout_constraintTop_toBottomOf="@+id/appBar"
+            app:navGraph="@navigation/nav_graph" />
 
-        <FrameLayout
-            android:id="@+id/contenedor"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/purple"
+            app:itemIconTint="@color/nav_item_color"
+            app:itemTextColor="@color/nav_item_color"
+
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerIngredientes"
-            tools:layout="@layout/fragment_bottom_navigation"/>
+            app:menu="@menu/bottom_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

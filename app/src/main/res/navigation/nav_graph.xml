@@ -4,16 +4,21 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
+    <!-- HOME -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.myapplication.UI.Fragment.HomeFragment"
         android:label="Home" />
 
+
+    <!-- ALQUIMIA -->
     <fragment
         android:id="@+id/alquimiaFragment"
         android:name="com.example.myapplication.UI.Fragment.AlquimiaFragment"
         android:label="Alquimia" />
 
+
+    <!-- ITEMS -->
     <fragment
         android:id="@+id/itemsFragment"
         android:name="com.example.myapplication.UI.Fragment.ItemsFragment"
