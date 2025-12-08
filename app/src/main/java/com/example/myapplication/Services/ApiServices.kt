@@ -12,4 +12,7 @@ interface ApiServices {
     @GET("potions/negative")
     suspend fun getNegativePotions(): List<Pocion>
 
+    @GET("potions/positive")
+    suspend fun getPositivePotions(): List<Pocion>
+
 }

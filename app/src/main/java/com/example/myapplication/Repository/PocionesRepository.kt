@@ -20,7 +20,7 @@ class PocionesRepository {
 
     suspend fun getPociones(): List<Pocion> {
         try {
-            return api.getNegativePotions()
+            return api.getNegativePotions() + api.getPositivePotions()
         } catch (e: Exception) {
             Log.d("GetError", "${e.message}")
             return emptyList()

@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.IngredientesAdapter
 import com.example.myapplication.UI.Activity.DetailActivity
 import com.example.myapplication.UI.Activity.PotionsActivity
+import com.example.myapplication.UI.Fragment.NavigationBottomFragment
 import com.example.myapplication.UI.ViewModel.MainViewModel
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
@@ -84,6 +85,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 adapter.updateData(lista)
             }
         }
+
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.contenedor, NavigationBottomFragment())
+//            .commit()
     }
 
     // Función para manejar los clicks en los items del menú
