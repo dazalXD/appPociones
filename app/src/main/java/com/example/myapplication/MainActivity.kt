@@ -21,14 +21,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.IngredientesAdapter
 import com.example.myapplication.UI.Activity.DetailActivity
 import com.example.myapplication.UI.Activity.PotionsActivity
-import com.example.myapplication.UI.ViewModel.MainViewModel
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private val viewModel: MainViewModel by viewModels()
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: IngredientesAdapter
 
