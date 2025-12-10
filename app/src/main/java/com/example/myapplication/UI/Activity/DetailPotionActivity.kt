@@ -17,8 +17,10 @@ import com.example.myapplication.Adapter.PocionesAdapter
 import com.example.myapplication.Data.Pocion
 import com.example.myapplication.R
 import com.example.myapplication.UI.ViewModel.DatailPotionsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailPotionActivity : AppCompatActivity() {
     private val detailPotionViewModel: DatailPotionsViewModel by viewModels()
     private lateinit var recycler: RecyclerView

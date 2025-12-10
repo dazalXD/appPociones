@@ -1,22 +1,23 @@
 package com.example.myapplication.Repository
 
-import android.content.Context
 import android.util.Log
-import com.example.myapplication.DB.AppDataBase
 import com.example.myapplication.Data.Ingrediente
-import com.example.myapplication.Data.Mappers.ToIngredienteEntity
+import com.example.myapplication.Data.Local.DAO.IngredienteDao
+import com.example.myapplication.Data.Local.DAO.ObtencionDao
+import com.example.myapplication.Data.Local.DAO.PocionesDao
 import com.example.myapplication.Data.Mappers.ToObtencionEntity
+import com.example.myapplication.Data.Mappers.ToIngredienteEntity
+import com.example.myapplication.Data.Mappers.ToPocionEntity
 import com.example.myapplication.Data.Pocion
 import com.example.myapplication.Services.ApiServices
-import com.example.myapplication.Services.RetrofitClient
-import okhttp3.internal.wait
+import javax.inject.Inject
 
-class PocionesRepository(context: Context) {
-    private val api = RetrofitClient.apiService
-    private val ingredienteDao = AppDataBase.getInstance(context).ingredienteDao()
-    private val pocionDao = AppDataBase.getInstance(context).pocionesDao()
-    private val obtencionDao = AppDataBase.getInstance(context).obtencionDao()
-
+class PocionesRepository @Inject constructor(
+    private val api: ApiServices,
+    private val ingredienteDao: IngredienteDao,
+    private val pocionDao: PocionesDao,
+    private val obtencionDao: ObtencionDao
+) {
 
     /**
      * obtiene la lista de ingredientes
@@ -27,10 +28,21 @@ class PocionesRepository(context: Context) {
     suspend fun getIngredients(): List<Ingrediente> {
         try {
             val ingredientes = api.getIngredients()
-
-            obtencionDao.insertObtenciones(ingredientes.map { it.obtencion.ToObtencionEntity() })
-//            ingredienteDao.insertIngredientes(ingredientes.map { it.ToIngredienteEntity() })
-            Log.d("PocionesRepository", "Ingredientes guardados en la base de datos local")
+            val ingredientesLocal = ingredienteDao.getAllIngredientes().size
+            if (ingredientesLocal == ingredientes.size) {
+                Log.d("PocionesRepository", "No hay nada que almacenar")
+            } else {
+                ingredientes.forEach { ingrediente ->
+                    val ingredienteId =
+                        ingredienteDao.insertIngrediente(ingrediente.ToIngredienteEntity())
+                    obtencionDao.insertObtencion(
+                        ingrediente.obtencion.ToObtencionEntity(
+                            ingredienteId.toInt()
+                        )
+                    )
+                }
+                Log.d("PocionesRepository", "Ingredientes guardados en la base de datos local")
+            }
             return ingredientes
         } catch (e: Exception) {
             Log.d("GetError", "${e.message}")
@@ -40,7 +52,19 @@ class PocionesRepository(context: Context) {
 
     suspend fun getPociones(): List<Pocion> {
         try {
-            return api.getNegativePotions() + api.getPositivePotions()
+            val pociones = api.getNegativePotions() + api.getPositivePotions()
+
+            Log.d("PocionesRepository", "pociones obtenidas del backend: " + pociones)
+            val pocionesLocal = pocionDao.getAllPociones().size
+
+            if (pocionesLocal == pociones.size) {
+                Log.d("PocionesRepository", "No hay nada que almacenar")
+            } else {
+                pociones.forEach { pocion ->
+                    pocionDao.insertPocion(pocion.ToPocionEntity())
+                }
+            }
+            return pociones
         } catch (e: Exception) {
             Log.d("GetError", "${e.message}")
             return emptyList()

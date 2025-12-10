@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Pocion(
+    val id: Int,
     val nombre: String,
     val descripcion: String,
     val ingredientes: List<Ingrediente>,

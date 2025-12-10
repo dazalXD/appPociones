@@ -12,10 +12,7 @@ import com.example.myapplication.Data.Local.Relations.IngredienteConObtencion
 interface IngredienteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertIngrediente(ingrediente: IngredienteEntity)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertIngredientes(ingredientes: List<IngredienteEntity>)
+    suspend fun insertIngrediente(ingrediente: IngredienteEntity): Long
 
     @Query("SELECT * FROM ingredientes")
     suspend fun getAllIngredientes(): List<IngredienteEntity>

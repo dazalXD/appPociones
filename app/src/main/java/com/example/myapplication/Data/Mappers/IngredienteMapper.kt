@@ -10,30 +10,16 @@ fun Ingrediente.ToIngredienteEntity(): IngredienteEntity = IngredienteEntity(
     nombre = this.nombre,
     tipo = this.tipo,
     descripcion = this.descripcion,
-    imagen = this.imagen,
-    obtencionId = this.obtencion.id
+    imagen = this.imagen
 )
 
 fun List<Ingrediente>.ToIngredienteEntity(): List<IngredienteEntity> =
     this.map { it.ToIngredienteEntity() }
 
-fun IngredienteEntity.ToIngrediente(): Ingrediente = Ingrediente(
-    id = this.id,
-    nombre = this.nombre,
-    tipo = this.tipo,
-    descripcion = this.descripcion,
-    imagen = this.imagen,
-    obtencion = Obtencion(
-        id = this.obtencionId,
-        dimencion = "",
-        ubicacion = "",
-        Herramienta = "",
-        crafteo = ""
-    )
-)
 
-fun Obtencion.ToObtencionEntity(): ObtencionEntity = ObtencionEntity(
+fun Obtencion.ToObtencionEntity(toInt: Int): ObtencionEntity = ObtencionEntity(
     id = this.id,
+    ingredienteId = toInt,
     dimencion = this.dimencion,
     ubicacion = this.ubicacion,
     Herramienta = this.Herramienta,

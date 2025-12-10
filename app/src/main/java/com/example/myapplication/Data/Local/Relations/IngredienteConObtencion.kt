@@ -8,8 +8,8 @@ import com.example.myapplication.Data.Local.Entities.ObtencionEntity
 data class IngredienteConObtencion(
     @Embedded val ingrediente: IngredienteEntity,
     @Relation(
-        parentColumn = "obtencionId",
-        entityColumn = "id"
+        parentColumn = "id",
+        entityColumn = "ingredienteId"
     )
     val obtencion: ObtencionEntity
 )

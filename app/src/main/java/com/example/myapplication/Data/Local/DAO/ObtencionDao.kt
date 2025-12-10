@@ -12,9 +12,6 @@ interface ObtencionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertObtencion(obtencion: ObtencionEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertObtenciones(lista: List<ObtencionEntity>)
-
     @Query("SELECT * FROM Obtencion")
     suspend fun getAllObtenciones(): List<ObtencionEntity>
 }

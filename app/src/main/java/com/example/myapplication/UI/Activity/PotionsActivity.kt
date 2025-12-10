@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.PocionesAdapter
 import com.example.myapplication.R
 import com.example.myapplication.UI.ViewModel.PotionsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PotionsActivity : AppCompatActivity() {
 
     private lateinit var recycler: RecyclerView

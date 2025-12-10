@@ -17,8 +17,10 @@ import com.example.myapplication.R
 import com.example.myapplication.UI.Activity.DetailActivity
 import com.example.myapplication.UI.Activity.DetailPotionActivity
 import com.example.myapplication.UI.ViewModel.HomeFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: PocionesAdapter
@@ -43,8 +45,10 @@ class HomeFragment : Fragment() {
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
         adapter = PocionesAdapter(emptyList()) { item ->
-            val Intent = Intent(requireActivity(), DetailPotionActivity::class.java)
-            Intent.putExtra("pocion", item)
+
+            val Intent = Intent(requireActivity(), DetailPotionActivity::class.java).apply {
+                putExtra("pocion", item)
+            }
             startActivity(Intent)
         }
         recycler.adapter = adapter

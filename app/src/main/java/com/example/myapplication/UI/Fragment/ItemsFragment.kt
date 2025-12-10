@@ -16,9 +16,11 @@ import com.example.myapplication.R
 import com.example.myapplication.UI.Activity.DetailActivity
 import com.example.myapplication.UI.ViewModel.HomeFragmentViewModel
 import com.example.myapplication.UI.ViewModel.ItemsFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.getValue
 
+@AndroidEntryPoint
 class ItemsFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: IngredientesAdapter

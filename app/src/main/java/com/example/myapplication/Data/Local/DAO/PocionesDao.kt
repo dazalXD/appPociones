@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
 interface PocionesDao {
 
     // ---------- INSERTS ----------
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPocion(pocion: PocionEntity): Long
 
@@ -32,7 +31,7 @@ interface PocionesDao {
     fun getAllIngredientes(): Flow<List<IngredienteEntity>>
 
     @Query("SELECT * FROM Pociones")
-    fun getAllPociones(): Flow<List<PocionEntity>>
+    suspend fun getAllPociones(): List<PocionEntity>
 
 
     // ---------- GET RELACIONES COMPLETAS ----------

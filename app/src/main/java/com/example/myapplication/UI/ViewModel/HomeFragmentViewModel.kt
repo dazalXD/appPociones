@@ -1,18 +1,19 @@
 package com.example.myapplication.UI.ViewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.Data.Ingrediente
 import com.example.myapplication.Data.Pocion
 import com.example.myapplication.Repository.PocionesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeFragmentViewModel(application: Application) : AndroidViewModel(application) {
-    private val repo = PocionesRepository(application.applicationContext)
+@HiltViewModel
+class HomeFragmentViewModel @Inject constructor(
+    private val repo: PocionesRepository
+) : ViewModel() {
     private val _potions = MutableStateFlow<List<Pocion>>(emptyList())
     val potions: StateFlow<List<Pocion>> = _potions
 
