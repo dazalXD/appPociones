@@ -8,3 +8,13 @@ fun Pocion.ToPocionEntity(): PocionEntity = PocionEntity(
     nombre = this.nombre,
     descripcion = this.descripcion
 )
+
+fun List<PocionEntity>.ToListPocion(): List<Pocion> = this.map {
+    Pocion(
+        id = it.id,
+        nombre = it.nombre,
+        descripcion = it.descripcion,
+        pasos = emptyList(),
+        ingredientes = emptyList()
+    )
+}

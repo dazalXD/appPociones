@@ -7,9 +7,13 @@ import com.example.myapplication.Data.Local.DAO.ObtencionDao
 import com.example.myapplication.Data.Local.DAO.PocionesDao
 import com.example.myapplication.Data.Mappers.ToObtencionEntity
 import com.example.myapplication.Data.Mappers.ToIngredienteEntity
+import com.example.myapplication.Data.Mappers.ToListIngrediente
+import com.example.myapplication.Data.Mappers.ToListPocion
 import com.example.myapplication.Data.Mappers.ToPocionEntity
 import com.example.myapplication.Data.Pocion
 import com.example.myapplication.Services.ApiServices
+import retrofit2.Call
+import retrofit2.Callback
 import javax.inject.Inject
 
 class PocionesRepository @Inject constructor(
@@ -28,22 +32,26 @@ class PocionesRepository @Inject constructor(
     suspend fun getIngredients(): List<Ingrediente> {
         try {
             val ingredientes = api.getIngredients()
-            val ingredientesLocal = ingredienteDao.getAllIngredientes().size
-            if (ingredientesLocal == ingredientes.size) {
-                Log.d("PocionesRepository", "No hay nada que almacenar")
-            } else {
-                ingredientes.forEach { ingrediente ->
-                    val ingredienteId =
-                        ingredienteDao.insertIngrediente(ingrediente.ToIngredienteEntity())
-                    obtencionDao.insertObtencion(
-                        ingrediente.obtencion.ToObtencionEntity(
-                            ingredienteId.toInt()
-                        )
-                    )
-                }
-                Log.d("PocionesRepository", "Ingredientes guardados en la base de datos local")
-            }
-            return ingredientes
+            val ingredientesLocal = ingredienteDao.getAllIngredientes()
+
+//            ingredientes.enqueue(object : Callback<List<Ingrediente>> {})
+//            if (ingredientesLocal.size == ingredientes.size) {
+//                Log.d("PocionesRepository", "No hay nada que almacenar")
+            return ingredientesLocal.ToListIngrediente()
+//            } else {
+//                Log.d("api","pasa a la api a carga la info desde ahi.")
+//                ingredientes.forEach { ingrediente ->
+//                    val ingredienteId =
+//                        ingredienteDao.insertIngrediente(ingrediente.ToIngredienteEntity())
+//                    obtencionDao.insertObtencion(
+//                        ingrediente.obtencion.ToObtencionEntity(
+//                            ingredienteId.toInt()
+//                        )
+//                    )
+//                }
+//                Log.d("PocionesRepository", "Ingredientes guardados en la base de datos local")
+//                return ingredientes
+//            }
         } catch (e: Exception) {
             Log.d("GetError", "${e.message}")
             return emptyList()
@@ -52,19 +60,19 @@ class PocionesRepository @Inject constructor(
 
     suspend fun getPociones(): List<Pocion> {
         try {
-            val pociones = api.getNegativePotions() + api.getPositivePotions()
+//            val pociones = api.getNegativePotions() + api.getPositivePotions()
 
-            Log.d("PocionesRepository", "pociones obtenidas del backend: " + pociones)
-            val pocionesLocal = pocionDao.getAllPociones().size
+//            Log.d("PocionesRepository", "pociones obtenidas del backend: " + pociones)
+            val pocionesLocal = pocionDao.getAllPociones()
 
-            if (pocionesLocal == pociones.size) {
-                Log.d("PocionesRepository", "No hay nada que almacenar")
-            } else {
-                pociones.forEach { pocion ->
-                    pocionDao.insertPocion(pocion.ToPocionEntity())
-                }
-            }
-            return pociones
+//            if (pocionesLocal.size == pociones.size) {
+//                Log.d("PocionesRepository", "No hay nada que almacenar")
+//            } else {
+//                pociones.forEach { pocion ->
+//                    pocionDao.insertPocion(pocion.ToPocionEntity())
+//                }
+//            }
+            return pocionesLocal.ToListPocion()
         } catch (e: Exception) {
             Log.d("GetError", "${e.message}")
             return emptyList()
