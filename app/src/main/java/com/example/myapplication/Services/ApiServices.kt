@@ -8,7 +8,7 @@ import retrofit2.http.GET
 interface ApiServices {
 
     @GET("potions/ingredients")
-    suspend fun getIngredients(): Call<List<Ingrediente>>
+    suspend fun getIngredients(): List<Ingrediente>
 
     @GET("potions/negative")
     suspend fun getNegativePotions(): List<Pocion>

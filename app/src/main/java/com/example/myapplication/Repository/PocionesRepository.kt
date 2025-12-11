@@ -37,7 +37,8 @@ class PocionesRepository @Inject constructor(
 //            ingredientes.enqueue(object : Callback<List<Ingrediente>> {})
 //            if (ingredientesLocal.size == ingredientes.size) {
 //                Log.d("PocionesRepository", "No hay nada que almacenar")
-            return ingredientesLocal.ToListIngrediente()
+//            return ingredientesLocal.ToListIngrediente()
+            return ingredientes
 //            } else {
 //                Log.d("api","pasa a la api a carga la info desde ahi.")
 //                ingredientes.forEach { ingrediente ->
@@ -60,10 +61,10 @@ class PocionesRepository @Inject constructor(
 
     suspend fun getPociones(): List<Pocion> {
         try {
-//            val pociones = api.getNegativePotions() + api.getPositivePotions()
+            val pociones = api.getNegativePotions() + api.getPositivePotions()
 
 //            Log.d("PocionesRepository", "pociones obtenidas del backend: " + pociones)
-            val pocionesLocal = pocionDao.getAllPociones()
+//            val pocionesLocal = pocionDao.getAllPociones()
 
 //            if (pocionesLocal.size == pociones.size) {
 //                Log.d("PocionesRepository", "No hay nada que almacenar")
@@ -72,7 +73,7 @@ class PocionesRepository @Inject constructor(
 //                    pocionDao.insertPocion(pocion.ToPocionEntity())
 //                }
 //            }
-            return pocionesLocal.ToListPocion()
+            return pociones
         } catch (e: Exception) {
             Log.d("GetError", "${e.message}")
             return emptyList()
