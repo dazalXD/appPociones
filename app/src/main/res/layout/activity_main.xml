@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:background="@color/green">
     <!--    tools:openDrawer="start"-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/green"
             app:layout_constraintTop_toTopOf="parent"
             app:liftOnScroll="true">
 
@@ -26,7 +26,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/purple"
+                android:background="@color/green"
                 app:navigationIcon="@drawable/ic_menu"
                 app:navigationIconTint="@color/white"
                 app:title="Ingredientes"
@@ -47,7 +47,7 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple"
+            android:background="@color/green"
             app:itemIconTint="@color/nav_item_color"
             app:itemTextColor="@color/nav_item_color"
 
@@ -62,7 +62,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:itemIconTint="@color/purple"
+        app:itemIconTint="@color/green"
         app:menu="@menu/menu_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

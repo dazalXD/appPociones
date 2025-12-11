@@ -2,7 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green">#8BC34A</color>
     <color name="red">#FF0000</color>
     <color name="blue">#03A9F4</color>
     <color name="yellow">#FFEB3B</color>
@@ -16,5 +15,10 @@
     <color name="purple_400">#AB47BC</color>
     <color name="purple">#9C27B0</color>
 
-
+    <color name="green_50">#F1F8E9</color>
+    <color name="green_100">#DCEDC8</color>
+    <color name="green_200">#C5E1A5</color>
+    <color name="green_300">#AED581</color>
+    <color name="green_400">#9CCC65</color>
+    <color name="green">#8BC34A</color>
 </resources>
