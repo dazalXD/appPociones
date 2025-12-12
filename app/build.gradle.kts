@@ -38,7 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
@@ -55,8 +55,6 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.coil)
 
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.fragment.ktx)
@@ -65,7 +63,6 @@ dependencies {
     implementation(libs.glide)
     ksp(libs.glide.compiler)
 
-    ksp(libs.room.compiler)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

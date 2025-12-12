@@ -2,8 +2,8 @@ package com.example.myapplication.UI.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.Data.Ingrediente
-import com.example.myapplication.Repository.PocionesRepository
+import com.example.myapplication.Domain.Models.Ingrediente
+import com.example.myapplication.Data.Repository.PocionesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.Data.Pocion
+import com.example.myapplication.Domain.Models.Pocion
 import com.example.myapplication.R
 
 class PocionesAdapter(

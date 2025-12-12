@@ -2,7 +2,6 @@ package com.example.myapplication.UI.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -13,8 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Adapter.IngredientesAdapter
-import com.example.myapplication.Adapter.PocionesAdapter
-import com.example.myapplication.Data.Pocion
+import com.example.myapplication.Domain.Models.Pocion
 import com.example.myapplication.R
 import com.example.myapplication.UI.ViewModel.DatailPotionsViewModel
 import dagger.hilt.android.AndroidEntryPoint

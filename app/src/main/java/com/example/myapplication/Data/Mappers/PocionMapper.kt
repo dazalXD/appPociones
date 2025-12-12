@@ -1,7 +1,7 @@
 package com.example.myapplication.Data.Mappers
 
 import com.example.myapplication.Data.Local.Entities.PocionEntity
-import com.example.myapplication.Data.Pocion
+import com.example.myapplication.Domain.Models.Pocion
 
 fun Pocion.ToPocionEntity(): PocionEntity = PocionEntity(
     id = this.id,

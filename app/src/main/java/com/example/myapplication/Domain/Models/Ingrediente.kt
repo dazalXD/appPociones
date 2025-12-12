@@ -1,13 +1,14 @@
-package com.example.myapplication.Data
+package com.example.myapplication.Domain.Models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Pocion(
+data class Ingrediente(
     val id: Int,
     val nombre: String,
+    val tipo: String,
     val descripcion: String,
-    val ingredientes: List<Ingrediente>,
-    val pasos: List<String>
+    val imagen: String,
+    val obtencion: Obtencion
 ) : Parcelable

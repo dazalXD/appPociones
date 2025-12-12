@@ -1,9 +1,9 @@
 package com.example.myapplication.Data.Mappers
 
-import com.example.myapplication.Data.Ingrediente
+import com.example.myapplication.Domain.Models.Ingrediente
 import com.example.myapplication.Data.Local.Entities.IngredienteEntity
 import com.example.myapplication.Data.Local.Entities.ObtencionEntity
-import com.example.myapplication.Data.Obtencion
+import com.example.myapplication.Domain.Models.Obtencion
 
 fun Ingrediente.ToIngredienteEntity(): IngredienteEntity = IngredienteEntity(
     id = this.id,

@@ -1,10 +1,9 @@
 package com.example.myapplication.DI
 
 import android.content.Context
-import com.example.myapplication.DB.AppDataBase
-import com.example.myapplication.Data.Local.DAO.IngredienteDao
-import com.example.myapplication.Data.Local.DAO.ObtencionDao
-import com.example.myapplication.Data.Local.DAO.PocionesDao
+import com.example.myapplication.DB.DatabaseHelper
+import com.example.myapplication.Data.Local.Sources.PocionesLocalDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,25 +14,18 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
+    @Provides
     @Singleton
-    @Provides
-    fun provideDatabase(@ApplicationContext context: Context): AppDataBase {
-        return AppDataBase.getInstance(context)
+    fun provideDatabaseHelper(@ApplicationContext context: Context): DatabaseHelper {
+        return DatabaseHelper(context)
     }
+}
 
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseSourceModule {
     @Provides
-    fun provideIngredienteDao(database: AppDataBase): IngredienteDao {
-        return database.ingredienteDao()
-    }
-
-    @Provides
-    fun providePocionesDao(database: AppDataBase): PocionesDao {
-        return database.pocionesDao()
-    }
-
-    @Provides
-    fun provideObtencionDao(database: AppDataBase): ObtencionDao {
-        return database.obtencionDao()
-    }
+    @Singleton
+    fun bindLocalDataSource(dbHelper: DatabaseHelper): PocionesLocalDataSource =
+        PocionesLocalDataSource(dbHelper)
 }

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import coil.load
-import com.example.myapplication.Data.Ingrediente
+import com.example.myapplication.Domain.Models.Ingrediente
 import com.example.myapplication.R
 import com.example.myapplication.UI.ViewModel.DetailIngredientViewModel
 
